@@ -21,14 +21,13 @@ protocol PredictableString {
     
     static func predict<T>(input subItem: String, in dictionary: Dictionary<String, T>) -> Dictionary<String, T>
     
-    static func predictContinous(input subItem: Binding<String>, in str: String, while condition: Bool, completion: @escaping (String) -> Void)
+    static func predictContinuous(input subItem: Binding<String>, in str: String, while condition: Bool, completion: @escaping (String) -> Void)
     
-    static func predictContinous(input subItem: Binding<String>, in str: [String], while condition: Bool, completion: @escaping ([String]) -> Void)
+    static func predictContinuous(input subItem: Binding<String>, in str: [String], while condition: Bool, completion: @escaping ([String]) -> Void)
     
-    static func predictContinous<T>(input subItem: Binding<String>, in str: Dictionary<T, String>, while condition: Bool, completion: @escaping (Dictionary<T, String>) -> Void)
+    static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<T, String>, while condition: Bool, completion: @escaping (Dictionary<T, String>) -> Void)
     
-    static func predictContinous<T>(input subItem: Binding<String>, in str: Dictionary<String, T>, while condition: Bool, completion: @escaping (Dictionary<String, T>) -> Void)
-    
+    static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<String, T>, while condition: Bool, completion: @escaping (Dictionary<String, T>) -> Void)
     
 }
 
@@ -129,7 +128,7 @@ extension Prediction: PredictableString {
     ///            print("Prediction: ", completion)
     ///        }
     ///    })
-    static func predictContinous(input subItem: Binding<String>, in str: String, while condition: Bool, completion: @escaping (String) -> Void) {
+    static func predictContinuous(input subItem: Binding<String>, in str: String, while condition: Bool, completion: @escaping (String) -> Void) {
         // Overwrite static class var continous
         Prediction.continous = condition
         let currentTime = Date()
@@ -143,7 +142,7 @@ extension Prediction: PredictableString {
         }
     }
     
-    static func predictContinous(input subItem: Binding<String>, in str: [String], while condition: Bool, completion: @escaping ([String]) -> Void) {
+    static func predictContinuous(input subItem: Binding<String>, in str: [String], while condition: Bool, completion: @escaping ([String]) -> Void) {
         // Overwrite static class var continous
         Prediction.continous = condition
         let currentTime = Date()
@@ -157,7 +156,7 @@ extension Prediction: PredictableString {
         }
     }
     
-    static func predictContinous<T>(input subItem: Binding<String>, in str: Dictionary<T, String>, while condition: Bool, completion: @escaping (Dictionary<T, String>) -> Void) {
+    static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<T, String>, while condition: Bool, completion: @escaping (Dictionary<T, String>) -> Void) {
         // Overwrite static class var continous
         Prediction.continous = condition
         let currentTime = Date()
@@ -171,7 +170,7 @@ extension Prediction: PredictableString {
         }
     }
     
-    static func predictContinous<T>(input subItem: Binding<String>, in str: Dictionary<String, T>, while condition: Bool, completion: @escaping (Dictionary<String, T>) -> Void) {
+    static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<String, T>, while condition: Bool, completion: @escaping (Dictionary<String, T>) -> Void) {
         // Overwrite static class var continous
         Prediction.continous = condition
         let currentTime = Date()
