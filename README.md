@@ -25,7 +25,7 @@ Currently this packages functionality is limited to predicting strings. This can
 Generall usage is:
 
 ```Swift
-Prediction.predict(...)
+UserPrediction.predict(...)
 ```
 
 There are several options currently available to use. They can be summarised into:
@@ -64,7 +64,7 @@ Some examples of usage.
 
 ### Predicting String in TextField
 
-[TextFieldExample.swift](Sources/PredictionLibrary/Examples/StringPrediction/TextFieldExample.swift)
+[TextFieldExample.swift](Sources/UserPrediction/Examples/StringPrediction/TextFieldExample.swift)
 
 ## Defaults
 

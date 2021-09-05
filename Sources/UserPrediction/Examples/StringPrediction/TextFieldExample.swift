@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import UserPrediction
 
 struct SwiftUIView: View {
     
     @State var userTextInput = ""
     let mySearchable = ["String","Strin","Stri","Str","St","S","X"]
+    var precition = []
     
     var body: some View {
         TextField("Title", text: $userTextInput, onEditingChanged: { editing in
@@ -19,7 +21,7 @@ struct SwiftUIView: View {
             }
         },
         onCommit: {
-            UserPrediction.predict(input: self.userTextInput, in: self.mySearchable)
+            self.precition = UserPrediction.predict(input: self.userTextInput, in: self.mySearchable)
         }).padding()
     }
 }
