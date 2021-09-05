@@ -31,7 +31,7 @@ protocol PredictableString {
     
 }
 
-extension Prediction: PredictableString {
+extension UserPrediction: PredictableString {
     //fileprivate var qualityOfServiceLevel: DispatchQoS.QoSClass = .background
     
     fileprivate static var correctionPercentage: Double = 0.5
@@ -45,12 +45,12 @@ extension Prediction: PredictableString {
     
     static func setCorrectionPercentage(new percentage: Double) {
         if percentage < 1.0 && percentage > 0.0 {
-            Prediction.correctionPercentage = percentage
+            UserPrediction.correctionPercentage = percentage
         }
     }
     
     static func setCorrection(new correction: Bool) {
-        Prediction.withCorrection = correction
+        UserPrediction.withCorrection = correction
     }
     
     static func predict(input subItem: String, in str: String) -> String {
@@ -84,7 +84,7 @@ extension Prediction: PredictableString {
     
     // MARK: Predictable Implementation
     static func predict(input subItem: String, in array: [String]) -> [String] {
-        return array.find(str: subItem, correction: Prediction.withCorrection, with: Prediction.correctionPercentage)
+        return array.find(str: subItem, correction: UserPrediction.withCorrection, with: UserPrediction.correctionPercentage)
     }
     
     static func predict<T>(input subItem: String, in dictionary: Dictionary<T, String>) -> Dictionary<T, String> {
@@ -94,7 +94,7 @@ extension Prediction: PredictableString {
         for (_, value) in dictionary {
             arrayTransformed.append(value)
         }
-        let predictedValues = arrayTransformed.find(str: subItem, correction: Prediction.withCorrection, with: Prediction.correctionPercentage)
+        let predictedValues = arrayTransformed.find(str: subItem, correction: UserPrediction.withCorrection, with: UserPrediction.correctionPercentage)
         for (key, value) in dictionary {
             if predictedValues.contains(value) {
                 predictionDictionary[key] = value
@@ -110,7 +110,7 @@ extension Prediction: PredictableString {
         for (key, _) in dictionary {
             arrayTransformed.append(key)
         }
-        let predictedValues = arrayTransformed.find(str: subItem, correction: Prediction.withCorrection, with: Prediction.correctionPercentage)
+        let predictedValues = arrayTransformed.find(str: subItem, correction: UserPrediction.withCorrection, with: UserPrediction.correctionPercentage)
         for (key, value) in dictionary {
             if predictedValues.contains(key) {
                 predictionDictionary[key] = value
@@ -130,12 +130,12 @@ extension Prediction: PredictableString {
     ///    })
     static func predictContinuous(input subItem: Binding<String>, in str: String, while condition: Bool, completion: @escaping (String) -> Void) {
         // Overwrite static class var continous
-        Prediction.continous = condition
+        UserPrediction.continous = condition
         let currentTime = Date()
-        if Prediction.continous {
+        if UserPrediction.continous {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                completion(Prediction.predict(input: subItem.wrappedValue, in: str))
-                if !Prediction.continous || currentTime.addingTimeInterval(Prediction.invalidationTimer) < Date() {
+                completion(UserPrediction.predict(input: subItem.wrappedValue, in: str))
+                if !UserPrediction.continous || currentTime.addingTimeInterval(UserPrediction.invalidationTimer) < Date() {
                     timer.invalidate()
                 }
             }
@@ -144,12 +144,12 @@ extension Prediction: PredictableString {
     
     static func predictContinuous(input subItem: Binding<String>, in str: [String], while condition: Bool, completion: @escaping ([String]) -> Void) {
         // Overwrite static class var continous
-        Prediction.continous = condition
+        UserPrediction.continous = condition
         let currentTime = Date()
-        if Prediction.continous {
+        if UserPrediction.continous {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                completion(Prediction.predict(input: subItem.wrappedValue, in: str))
-                if !Prediction.continous || currentTime.addingTimeInterval(Prediction.invalidationTimer) < Date() {
+                completion(UserPrediction.predict(input: subItem.wrappedValue, in: str))
+                if !UserPrediction.continous || currentTime.addingTimeInterval(UserPrediction.invalidationTimer) < Date() {
                     timer.invalidate()
                 }
             }
@@ -158,12 +158,12 @@ extension Prediction: PredictableString {
     
     static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<T, String>, while condition: Bool, completion: @escaping (Dictionary<T, String>) -> Void) {
         // Overwrite static class var continous
-        Prediction.continous = condition
+        UserPrediction.continous = condition
         let currentTime = Date()
-        if Prediction.continous {
+        if UserPrediction.continous {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                completion(Prediction.predict(input: subItem.wrappedValue, in: str))
-                if !Prediction.continous || currentTime.addingTimeInterval(Prediction.invalidationTimer) < Date() {
+                completion(UserPrediction.predict(input: subItem.wrappedValue, in: str))
+                if !UserPrediction.continous || currentTime.addingTimeInterval(UserPrediction.invalidationTimer) < Date() {
                     timer.invalidate()
                 }
             }
@@ -172,12 +172,12 @@ extension Prediction: PredictableString {
     
     static func predictContinuous<T>(input subItem: Binding<String>, in str: Dictionary<String, T>, while condition: Bool, completion: @escaping (Dictionary<String, T>) -> Void) {
         // Overwrite static class var continous
-        Prediction.continous = condition
+        UserPrediction.continous = condition
         let currentTime = Date()
-        if Prediction.continous {
+        if UserPrediction.continous {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                completion(Prediction.predict(input: subItem.wrappedValue, in: str))
-                if !Prediction.continous || currentTime.addingTimeInterval(Prediction.invalidationTimer) < Date() {
+                completion(UserPrediction.predict(input: subItem.wrappedValue, in: str))
+                if !UserPrediction.continous || currentTime.addingTimeInterval(UserPrediction.invalidationTimer) < Date() {
                     timer.invalidate()
                 }
             }

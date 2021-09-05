@@ -14,12 +14,12 @@ struct SwiftUIView: View {
     
     var body: some View {
         TextField("Title", text: $userTextInput, onEditingChanged: { editing in
-            Prediction.predictContinuous(input: $userTextInput, in: self.mySearchable, while: editing) { completion in
+            UserPrediction.predictContinuous(input: $userTextInput, in: self.mySearchable, while: editing) { completion in
                 print("Prediction: ", completion)
             }
         },
         onCommit: {
-            Prediction.predict(input: self.userTextInput, in: self.mySearchable)
+            UserPrediction.predict(input: self.userTextInput, in: self.mySearchable)
         }).padding()
     }
 }

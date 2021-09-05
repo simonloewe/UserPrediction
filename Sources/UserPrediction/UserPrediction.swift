@@ -10,6 +10,4 @@ import SwiftUI
 
 
 // MARK: Predict
-struct Prediction { }
-
-
+struct UserPrediction { }
